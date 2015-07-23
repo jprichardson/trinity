@@ -2,7 +2,7 @@
 
 // either finds existing, or adds new
 export function setRightPanel (workspace, domEl) {
-  domEl.setAttribute('id', 'trinity-root'
+  domEl.setAttribute('id', 'trinity-root')
   let panels = workspace.getRightPanels()
   if (panels.length === 0) return workspace.addRightPanel({ item: domEl })
 

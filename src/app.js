@@ -17,7 +17,7 @@ export default class App {
       debug(`editor opened with ${editor.getPath()}`)
       this.disposables.add(editor.onDidSave((event) => {
         debug(`editor saved ${event.path}`)
-        this.runTestsFn(event.path)
+        this.runTestsFn(event.path, editor.getBuffer())
       }))
     }))
   }
