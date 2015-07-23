@@ -1,0 +1,31 @@
+{
+  "name": "trinity",
+  "version": "0.0.0",
+  "description": "Don't use this yet.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jprichardson/atom-trinity.git"
+  },
+  "keywords": [
+    "atom",
+    "test",
+    "testing",
+    "tdd",
+    "bdd",
+    "unit"
+  ],
+  "author": "JP Richardson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jprichardson/atom-trinity/issues"
+  },
+  "homepage": "https://github.com/jprichardson/atom-trinity#readme",
+  "dependencies": {
+    "lodash.partial": "^3.1.1",
+    "ms": "^0.7.1"
+  }
+}

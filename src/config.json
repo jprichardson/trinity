@@ -1,0 +1,12 @@
+{
+  "debug": {
+    "type": "boolean",
+    "default": true,
+    "description": "Enable Trinity debug output in the developer tools console."
+  },
+  "fileFilter": {
+    "type": "string",
+    "default": "test.js",
+    "description": "Filter to match to run tests."
+  }
+}
