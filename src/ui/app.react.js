@@ -1,9 +1,23 @@
 'use babel'
 
 import React, { PropTypes } from 'react'
+import * as events from '../events'
+window.events= events
 
 const App = React.createClass({
   displayName: 'App',
+
+  handleTestEvents ({ eventName, data }) {
+    
+  },
+
+  componentDidMount () {
+    events.subscribe(this.handleTestEvents)
+  },
+
+  componentDidUnmount () {
+    events.unsubscribe(this.handleTestEvents)
+  },
 
   render () {
     return (
