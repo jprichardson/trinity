@@ -42,7 +42,7 @@ const App = React.createClass({
     let test
     switch (eventName) {
       case 'test':
-        test = { asserts: [], comments: [], data: data }
+        test = { asserts: [], data: data }
         tests.push(test)
         this.setState({ tests: tests })
         break
@@ -53,7 +53,23 @@ const App = React.createClass({
         break
       case 'comment':
         test = this.state.tests[this.state.tests.length - 1]
-        test.comments.push(data)
+        if (!test) {
+          test = { asserts: [], data: data }
+          // React.js gods, please forgive me
+          this.state.tests.push(test)
+        }
+        // compress comments (or console output) into one block
+        // otherwise our output would be choppy and ugly
+        let lastAssert = test.asserts[test.asserts.length - 1]
+        if (!lastAssert) {
+          test.asserts.push(data)
+        } else {
+          if (lastAssert.type === 'comment') {
+            lastAssert.raw += '\n' + data.raw
+          } else {
+            test.asserts.push(data)
+          }
+        }
         this.setState({ tests: tests })
         break
       case 'result':
