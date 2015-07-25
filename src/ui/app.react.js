@@ -52,6 +52,12 @@ const App = React.createClass({
         break
       case 'assert':
         test = this.state.tests[this.state.tests.length - 1]
+        if (!test) {
+          test = { asserts: [], data: data }
+          // React.js gods, please forgive me
+          this.state.tests.push(test)
+        }
+
         test.asserts.push(data)
         this.setState({ tests: tests })
         break
@@ -78,7 +84,7 @@ const App = React.createClass({
         break
       case 'result':
         let results = this.state.results
-        results.push(results)
+        results.push(data)
         this.setState({ results: results })
         break
       // editor Saved
@@ -102,10 +108,25 @@ const App = React.createClass({
 
   render () {
     let tests = this.state.tests.map(test => <TestView test={ test } />)
+    let successResults = this.state.results.filter(res => res.name === 'pass')
+    let failResults = this.state.results.filter(res => res.name === 'fail')
+
+    let success = successResults.length ? successResults[0].count : 0
+    let fail = failResults.length ? failResults[0].count : 0
+
+    let failView = fail > 0
+      ? <span className='badge badge-error'>{ fail }</span>
+      : null
 
     return (
       <div className='inset-panel tree-view-resizer' style={{ width: '100%' }}>
-        <div className='panel-heading'>Trinity</div>
+        <div className='panel-heading'>
+          Trinity
+          <div className='inline-block' style={{ float: 'right' }}>
+            { failView }
+            <span className='badge badge-success'>{ success }</span>
+          </div>
+        </div>
         <div className='panel-body tree-view-scroller' style={{ padding: '0 12px 0 12px' }}>
           { tests }
         </div>
