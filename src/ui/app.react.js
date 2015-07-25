@@ -57,9 +57,9 @@ const App = React.createClass({
     let tests = this.state.tests.map(test => <TestView test={ test } />)
 
     return (
-      <div className='inset-panel'>
+      <div className='inset-panel tree-view-resizer'>
         <div className='panel-heading'>Trinity</div>
-        <div className='panel-body padded'>
+        <div className='panel-body padded tree-view-scroller'>
           { tests }
         </div>
       </div>

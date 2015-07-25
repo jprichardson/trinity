@@ -47,6 +47,7 @@ export default function runTestsFn (fileFilter, file, textBuffer) {
 function mountReact () {
   debug('mounting react...')
   var div = document.createElement('div')
+  div.setAttribute('class', 'tree-view-resizer')
   React.render(<App />, div)
   setRightPanel(atom.workspace, div)
   debug('react mounted.')
