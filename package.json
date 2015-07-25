@@ -26,6 +26,7 @@
   "homepage": "https://github.com/jprichardson/trinity#readme",
   "dependencies": {
     "lodash.partial": "^3.1.1",
+    "mocha": "^2.2.5",
     "ms": "^0.7.1",
     "onetime": "^1.0.0",
     "react": "^0.13.3",

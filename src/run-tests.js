@@ -40,7 +40,7 @@ export default function runTestsFn (fileFilter, file, textBuffer) {
   t.on('result', (data) => { events.publish('result', data) })
 
   let cdebug = _debug('trinity:run-tests:console')
-  var wv = webView.create(file, ({ message, level }) => {
+  var wv = webView.create(file, textBuffer.getText(), ({ message, level }) => {
     cdebug(`${level}: ${message}`)
     t.write(message + '\n')
   })

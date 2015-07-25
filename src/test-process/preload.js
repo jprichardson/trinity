@@ -17,3 +17,10 @@ process.stderr.write = function (msg) {
 console.dir = function (obj) {
   console.log(util.inspect(obj))
 }
+
+var oldLog = console.log.bind(console)
+console.log = function () {
+  // emulate node.js console.log
+  var msg = util.format.apply(util, arguments)
+  oldLog(msg)
+}
