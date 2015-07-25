@@ -13,7 +13,7 @@ const App = React.createClass({
   displayName: 'AppView',
 
   getInitialState () {
-    return { tests: [], results: {}, dragData: {} }
+    return { tests: [], results: [], dragData: {} }
   },
 
   handleDragStart ({ pageX }) {
