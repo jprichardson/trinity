@@ -1,6 +1,7 @@
 'use babel'
 
 import React, { PropTypes } from 'react'
+import AssertView from './assert.react'
 
 const TestView = React.createClass({
   displayName: 'TestView',
@@ -21,9 +22,12 @@ const TestView = React.createClass({
 
   render () {
     return (
-      <h3 className='block'>
-        { this.props.test.data.name }
-      </h3>
+      <div className='block'>
+        <h3>{ this.props.test.data.name }</h3>
+        <ul className='list-group'>
+          { this.props.test.asserts.map(assert => <AssertView assert = { assert } />) }
+        </ul>
+      </div>
     )
   }
 })
