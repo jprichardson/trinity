@@ -61,6 +61,10 @@ const App = React.createClass({
         results.push(results)
         this.setState({ results: results })
         break
+      // editor Saved
+      case 'clear':
+        this.setState(this.getInitialState())
+        break
     }
   },
 

@@ -27,6 +27,10 @@ export default function runTestsFn (fileFilter, file, textBuffer) {
     el.parentNode.removeChild(el)
   })
 
+  // hacky way to notify React that we're starting over
+  // alternatively, could destroy/remount React
+  events.publish('clear')
+
   // have no way of detecting if module is done.... hmm.
   let t = tapOut(function (output) { })
 
