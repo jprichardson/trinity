@@ -5,6 +5,9 @@
 import React from 'react'
 import * as events from '../events'
 import TestView from './test.react'
+import _debug from '../bdebug'
+
+const debug = _debug('trinity:ui:app')
 
 const App = React.createClass({
   displayName: 'AppView',
@@ -38,6 +41,7 @@ const App = React.createClass({
   },
 
   handleTestEvents ({ eventName, data }) {
+    debug(`${eventName}: ${JSON.stringify(data, null, 2)}`)
     let tests = this.state.tests
     let test
     switch (eventName) {
