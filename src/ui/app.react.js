@@ -86,7 +86,7 @@ const App = React.createClass({
     return (
       <div className='inset-panel tree-view-resizer' style={{ width: '100%' }}>
         <div className='panel-heading'>Trinity</div>
-        <div className='panel-body padded tree-view-scroller'>
+        <div className='panel-body tree-view-scroller' style={{ padding: '0 12px 0 12px' }}>
           { tests }
         </div>
         <div className='tree-view-resize-handle' onMouseDown={ this.handleDragStart }/>
