@@ -13,6 +13,30 @@ const App = React.createClass({
     return { tests: [], results: {}, dragData: {} }
   },
 
+  handleDragStart ({ pageX }) {
+    let rootEl = document.getElementById('trinity-root')
+    this.setState({ dragData: {
+      dragging: true,
+      pageX: pageX,
+      width: rootEl.offsetWidth
+    }})
+  },
+
+  handleDragMove ({ pageX }) {
+    let dragData = this.state.dragData
+    if (!dragData.dragging) return
+    let rootEl = document.getElementById('trinity-root')
+    let offset = pageX - dragData.pageX
+    let newWidth = dragData.width - offset
+    rootEl.style.width = newWidth + 'px'
+  },
+
+  handleDragEnd ({ pageX }) {
+    this.setState({ dragData: {
+      dragging: false
+    }})
+  },
+
   handleTestEvents ({ eventName, data }) {
     let tests = this.state.tests
     let test
@@ -42,35 +66,14 @@ const App = React.createClass({
 
   componentDidMount () {
     events.subscribe(this.handleTestEvents)
-
-    var self = this
-    document.addEventListener('mousemove', function ({ pageX }) {
-      let dragData = self.state.dragData
-      if (!dragData.dragging) return
-      let rootEl = document.getElementById('trinity-root')
-      let offset = pageX - dragData.pageX
-      let newWidth = dragData.width - offset
-      rootEl.style.width = newWidth + 'px'
-    })
-
-    document.addEventListener('mouseup', function ({ pageX }) {
-      self.setState({ dragData: {
-        dragging: false
-      }})
-    })
+    document.addEventListener('mousemove', this.handleDragMove)
+    document.addEventListener('mouseup', this.handleDragEnd)
   },
 
   componentDidUnmount () {
     events.unsubscribe(this.handleTestEvents)
-  },
-
-  dragStart ({ pageX }) {
-    let rootEl = document.getElementById('trinity-root')
-    this.setState({ dragData: {
-      dragging: true,
-      pageX: pageX,
-      width: rootEl.offsetWidth
-    }})
+    document.removeEventListener('mousemove', this.handleDragMove)
+    document.removeEventListener('mouseup', this.handleDragEnd)
   },
 
   render () {
@@ -82,7 +85,7 @@ const App = React.createClass({
         <div className='panel-body padded tree-view-scroller'>
           { tests }
         </div>
-        <div className='tree-view-resize-handle' onMouseDown={ this.dragStart }/>
+        <div className='tree-view-resize-handle' onMouseDown={ this.handleDragStart }/>
       </div>
     )
   }
