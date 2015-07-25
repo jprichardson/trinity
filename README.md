@@ -1,10 +1,12 @@
 Trinity
 =======
 
-An experiment.
+A testing experiment.
 
 
 License
 -------
 
-MIT Copyright (c) [JP Richardson](https://www.github.com)
+MIT
+
+Copyright 2015 (c) [JP Richardson](https://www.github.com/jprichardson)
