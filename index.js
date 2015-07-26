@@ -3,6 +3,8 @@ var partial = require('lodash.partial')
 var App = require('./src/app')
 var runTests = require('./src/run-tests')
 
+/* global atom */
+
 atom.config.onDidChange('trinity.debug', function (event) {
   event.newValue ? debug.enable('trinity*') : debug.disable()
 })

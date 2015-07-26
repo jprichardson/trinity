@@ -8,7 +8,7 @@ export function setRightPanel (workspace, domEl) {
 
   let panel
   for (panel of panels) {
-    if (panel.item.id === 'trinity-root') break;
+    if (panel.item.id === 'trinity-root') break
   }
 
   if (panel) {

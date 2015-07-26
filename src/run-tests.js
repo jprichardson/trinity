@@ -1,16 +1,16 @@
 'use babel'
 
 import once from 'onetime'
-import path from 'path'
 import React from 'react'
 import tapOut from 'tap-out'
-import vm from 'vm'
 import App from './ui/app.react'
 import { setRightPanel } from './atom'
 import _debug from './bdebug'
 import * as events from './events'
 import * as webView from './test-process/webview'
 
+// try to avoid using global atom, refactor to remove
+/* global atom */
 
 const debug = _debug('trinity:run-tests')
 const mountReactApp = once(mountReact)
