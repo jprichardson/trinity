@@ -7,6 +7,8 @@ import * as events from '../events'
 import TestView from './test.react'
 import _debug from '../bdebug'
 
+/* global localStorage document */
+
 const debug = _debug('trinity:ui:app')
 
 const App = React.createClass({
@@ -35,6 +37,7 @@ const App = React.createClass({
   },
 
   handleDragEnd ({ pageX }) {
+    localStorage.setItem('trinity-width', getRootElement().offsetWidth)
     this.setState({ dragData: {
       dragging: false
     }})
@@ -98,6 +101,11 @@ const App = React.createClass({
     events.subscribe(this.handleTestEvents)
     document.addEventListener('mousemove', this.handleDragMove)
     document.addEventListener('mouseup', this.handleDragEnd)
+
+    // restore width
+    let width = localStorage.getItem('trinity-width')
+    if (!width) return
+    getRootElement().style.width = width + 'px'
   },
 
   componentDidUnmount () {
@@ -140,5 +148,12 @@ const App = React.createClass({
     )
   }
 })
+
+//let _rootEl
+function getRootElement () {
+  //if (_rootEl) return _rootEl
+  return document.getElementById('trinity-root')
+  //return _rootEl
+}
 
 export default App
