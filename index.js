@@ -15,7 +15,13 @@ module.exports = {
 
   activate: function () {
     var testFn = partial(runTests, atom.config.get('trinity.fileFilter'))
-    this.app = new App({ workspace: atom.workspace, runTestsFn: testFn, babelOptions: atom.config.get('trinity.babelOptions') })
+    this.app = new App({
+      workspace: atom.workspace,
+      runTestsFn: testFn,
+      babelOptions: atom.config.get('trinity.babelOptions'),
+      // we pass a function, because this may change as more panes (editors) open/close
+      projPathsFn: function () { return atom.project.getPaths() }
+    })
     this.app.activate.apply(this.app, arguments)
   },
 

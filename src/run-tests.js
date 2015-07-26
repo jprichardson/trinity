@@ -15,7 +15,7 @@ import * as webView from './test-process/webview'
 const debug = _debug('trinity:run-tests')
 const mountReactApp = once(mountReact)
 
-export default function runTestsFn (fileFilter, file, textBuffer, babelOptions) {
+export default function runTestsFn (fileFilter, file, textBuffer, babelOptions, projPaths) {
   if (!file.match(fileFilter)) return
   mountReactApp()
   debug(`running ${file}`)
@@ -40,7 +40,7 @@ export default function runTestsFn (fileFilter, file, textBuffer, babelOptions) 
   t.on('result', (data) => { events.publish('result', data) })
 
   let cdebug = _debug('trinity:run-tests:console')
-  var wv = webView.create(file, textBuffer.getText(), babelOptions, ({ message, level }) => {
+  var wv = webView.create(file, textBuffer.getText(), babelOptions, projPaths, ({ message, level }) => {
     cdebug(`${level}: ${message}`)
     t.write(message + '\n')
   })

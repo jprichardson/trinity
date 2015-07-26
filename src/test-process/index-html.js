@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ipc.on('run-test', runTest)
 
-function runTest (testFile, text, babelOptions) {
+function runTest (testFile, text, babelOptions, projPaths) {
   // super hacky, should probably use recast
   if (text.includes('trinity: mocha')) {
     runMocha(testFile)
   } else {
+    require('./babel-hook')(projPaths, babelOptions)
     require(testFile)
   }
 }

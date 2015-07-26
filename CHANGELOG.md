@@ -4,6 +4,7 @@
 - added comment support
 - added mocha support
 - added success/fail badge support at top
+- added babel support
 
 0.1.0 / 2015-07-25
 ------------------
