@@ -2,6 +2,7 @@ var test = require('tape')
 
 test('test1: testing something', function (t) {
   console.log('yo\n dude')
+  t.equal(1, 2, '1 !== 2')
   t.assert(true, 'testing')
   console.error('hi')
   t.end()

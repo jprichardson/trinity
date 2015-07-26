@@ -149,11 +149,11 @@ const App = React.createClass({
   }
 })
 
-//let _rootEl
+// let _rootEl
 function getRootElement () {
-  //if (_rootEl) return _rootEl
+  // if (_rootEl) return _rootEl
   return document.getElementById('trinity-root')
-  //return _rootEl
+  // return _rootEl
 }
 
 export default App

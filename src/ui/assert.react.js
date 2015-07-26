@@ -22,7 +22,14 @@ const AssertView = React.createClass({
 
     var content = this.props.assert.type === 'comment'
       ? <pre className='test-comment'>{ this.props.assert.raw }</pre>
-      : <span>{ icon }{ this.props.assert.name }</span>
+      : <div>
+          { icon }{ this.props.assert.name }
+          {
+            this.props.assert.error
+            ? <pre className='test-comment-error'>{ this.props.assert.error.raw }</pre>
+            : null
+          }
+        </div>
 
     return (
       <li className='list-item'>

@@ -10,7 +10,7 @@ describe('some module description', function () {
       console.log('hello')
       assert('something', 'gonna assert')
       console.dir({name: 'jp'})
-      assert.equal(mm(3, 4), 7)
+      assert.equal(mm(4, 4), 7)
       console.log('done')
     })
   })

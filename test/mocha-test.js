@@ -8,6 +8,7 @@ describe('some module description', function () {
     it('should do something', function () {
       console.log('hello')
       assert('something', 'gonna assert')
+      assert.equal('hi', 'bye')
       console.dir({name: 'jp'})
       console.log('done')
     })
