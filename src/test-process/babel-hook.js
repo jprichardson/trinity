@@ -1,5 +1,5 @@
 var path = require('path')
-var register = require('babel/register')
+var register = require('babel-core/register')
 
 function hook (projPaths, babelOptions) {
   var localModPath = path.resolve(projPaths[0], babelOptions.babelLocalModules)

@@ -1,3 +1,7 @@
+0.2.1 / 2015-07-26
+------------------
+- switch from `babel` to `babel-core`
+
 0.2.0 / 2015-07-26
 ------------------
 - bugfix: clear test results on new run
