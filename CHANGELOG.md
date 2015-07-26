@@ -1,4 +1,4 @@
-0.x.y / 2015-xx-yy
+0.2.0 / 2015-07-26
 ------------------
 - bugfix: clear test results on new run
 - added comment support
