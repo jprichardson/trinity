@@ -108,11 +108,16 @@ const App = React.createClass({
 
   render () {
     let tests = this.state.tests.map(test => <TestView test={ test } />)
-    let successResults = this.state.results.filter(res => res.name === 'pass')
-    let failResults = this.state.results.filter(res => res.name === 'fail')
+    let success = 0
+    let fail = 0
 
-    let success = successResults.length ? successResults[0].count : 0
-    let fail = failResults.length ? failResults[0].count : 0
+    this.state.tests.forEach(function (test) {
+      test.asserts.forEach(function (assert) {
+        if (assert.type === 'comment') return
+        if (assert.ok) success += 1
+        else fail += 1
+      })
+    })
 
     let failView = fail > 0
       ? <span className='badge badge-error'>{ fail }</span>
