@@ -6,10 +6,11 @@ import _debug from './bdebug'
 const debug = _debug('trinity:app')
 
 export default class App {
-  constructor ({ workspace, runTestsFn }) {
+  constructor ({ workspace, runTestsFn, babelOptions }) {
     this.disposables = new CompositeDisposable()
     this.workspace = workspace
     this.runTestsFn = runTestsFn
+    this.babelOptions = babelOptions
   }
 
   activate () {
@@ -17,7 +18,7 @@ export default class App {
       debug(`editor opened with ${editor.getPath()}`)
       this.disposables.add(editor.onDidSave((event) => {
         debug(`editor saved ${event.path}`)
-        this.runTestsFn(event.path, editor.getBuffer())
+        this.runTestsFn(event.path, editor.getBuffer(), this.babelOptions)
       }))
     }))
   }

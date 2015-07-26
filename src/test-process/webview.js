@@ -2,7 +2,7 @@
 
 import path from 'path'
 
-export function create (jsFile, text, outputHandler) {
+export function create (jsFile, text, babelOptions, outputHandler) {
   var webView = document.createElement('webview')
   webView.setAttribute('nodeintegration', '')
   webView.setAttribute('disablewebsecurity', '')
@@ -11,7 +11,7 @@ export function create (jsFile, text, outputHandler) {
 
   function ipcMessageHandler ({ channel }) {
     if (channel !== 'ready') return
-    webView.send('run-test', jsFile, text)
+    webView.send('run-test', jsFile, text, babelOptions)
   }
 
   function consoleHandler ({ level, message, line, sourceId }) {

@@ -8,5 +8,15 @@
     "type": "string",
     "default": "test.js",
     "description": "Filter to match to run tests."
+  },
+  "babelOptions": {
+    "type": "object",
+    "properties": {
+      "babelLocalModules": {
+        "type": "string",
+        "default": "./src/_local_modules",
+        "description": "When Babel encounters a module that starts with '@' and is not a npm scoped module, it uses this directory to resolve the module."
+      }
+    }
   }
 }
