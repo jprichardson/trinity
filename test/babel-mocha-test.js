@@ -1,5 +1,5 @@
 import assert from 'assert'
-import mm from '@mock-module'
+import mm from '#mock-module'
 
 /* global describe it */
 // trinity: mocha

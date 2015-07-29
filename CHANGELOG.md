@@ -1,3 +1,8 @@
+0.3.0 / 2015-07-29
+------------------
+- added `resolvePrefix` to `babelOptions` in config
+- renamed `babelLocalModules` to ` resolvePath`
+
 0.2.1 / 2015-07-26
 ------------------
 - switch from `babel` to `babel-core`

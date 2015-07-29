@@ -12,10 +12,15 @@
   "babelOptions": {
     "type": "object",
     "properties": {
-      "babelLocalModules": {
+      "resolvePath": {
         "type": "string",
         "default": "./src/_local_modules",
-        "description": "When Babel encounters a module that starts with '@' and is not a npm scoped module, it uses this directory to resolve the module."
+        "description": "When Babel encounters an import statement with Resolve Prefix it uses this directory to resolve the module."
+      },
+      "resolvePrefix": {
+        "type": "string",
+        "default": "#",
+        "description": "When Babel encounters this prefix in your import statements, it replaces it with the Resolve Path."
       }
     }
   }

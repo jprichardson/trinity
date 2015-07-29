@@ -2,14 +2,13 @@ var path = require('path')
 var register = require('babel-core/register')
 
 function hook (projPaths, babelOptions) {
-  var localModPath = path.resolve(projPaths[0], babelOptions.babelLocalModules)
+  var localModPath = path.resolve(projPaths[0], babelOptions.resolvePath)
 
   return register({
     resolveModuleSource: function (src) {
-      if (src.indexOf('@') !== 0) return src
-      if (src.indexOf('/') > 0) return src // npm scoped module
+      if (src.indexOf(babelOptions.resolvePrefix) !== 0) return src
 
-      var localModuleName = src.split('@')[1]
+      var localModuleName = src.split(babelOptions.resolvePrefix)[1]
       var localModule = path.join(localModPath, localModuleName)
       return localModule
     },

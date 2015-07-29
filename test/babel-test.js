@@ -1,5 +1,5 @@
 import test from 'tape'
-import mm from '@mock-module'
+import mm from '#mock-module'
 
 test('test1: testing something', (t) => {
   console.log('yo\n dude')
