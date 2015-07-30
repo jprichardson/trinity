@@ -16,7 +16,9 @@ const debug = _debug('trinity:run-tests')
 const mountReactApp = once(mountReact)
 
 export default function runTestsFn (fileFilter, file, textBuffer, babelOptions, projPaths) {
-  if (!file.match(fileFilter)) return
+  let match = file.match(fileFilter)
+  debug(`'${file}' ${match ? 'MATCHES' : 'DOES NOT MATCH'} '${fileFilter}'`)
+  if (!match) return
   mountReactApp()
   debug(`running ${file}`)
 
