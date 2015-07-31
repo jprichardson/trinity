@@ -20,6 +20,7 @@ module.exports = {
       projPathsFn: function () { return atom.project.getPaths() }
     })
     this.app.activate.apply(this.app, arguments)
+    this.app.disposables.add(atom.commands.add('atom-workspace', 'trinity:run', this.app.run.bind(this.app)))
   },
 
   deactivate: function () {

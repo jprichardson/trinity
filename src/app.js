@@ -28,4 +28,9 @@ export default class App {
   deactivate () {
     this.disposables.dispose()
   }
+
+  run () {
+    let editor = this.workspace.getActiveTextEditor()
+    runTests('**', editor.getPath(), editor.getBuffer(), this.babelOptions, this.projPathsFn())
+  }
 }
