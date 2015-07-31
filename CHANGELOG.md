@@ -1,3 +1,7 @@
+0.4.0 / 2015-07-31
+------------------
+- made `<pre>` text selectable / copyable
+
 0.3.0 / 2015-07-29
 ------------------
 - added `resolvePrefix` to `babelOptions` in config
