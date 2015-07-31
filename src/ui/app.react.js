@@ -142,6 +142,11 @@ const App = React.createClass({
         </div>
         <div className='panel-body tree-view-scroller' style={{ padding: '0 12px 0 12px' }}>
           { tests }
+          {/* HACK HACK */}
+          {/* padding blocks, there's no doubt better CSS ways to solve this */}
+          {/* this is done as some of the last content isn't shown and scrollbars don't appear until more content */}
+          <div className='block'>&nbsp;</div>
+          <div className='block'>&nbsp;</div>
         </div>
         <div className='tree-view-resize-handle' onMouseDown={ this.handleDragStart }/>
       </div>
