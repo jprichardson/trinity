@@ -4,10 +4,10 @@
     "default": true,
     "description": "Enable Trinity debug output in the developer tools console."
   },
-  "fileFilter": {
+  "fileFilters": {
     "type": "string",
-    "default": "test.js",
-    "description": "Filter to match to run tests."
+    "default": "*.test.js",
+    "description": "Filter to match to run Trinity on save. Separate patterns with semicolons."
   },
   "babelOptions": {
     "type": "object",

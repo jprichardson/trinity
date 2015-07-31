@@ -1,7 +1,5 @@
 var debug = require('./src/bdebug')
-var partial = require('lodash.partial')
 var App = require('./src/app')
-var runTests = require('./src/run-tests')
 
 /* global atom */
 
@@ -14,10 +12,9 @@ module.exports = {
   config: require('./src/config'),
 
   activate: function () {
-    var testFn = partial(runTests, atom.config.get('trinity.fileFilter'))
     this.app = new App({
       workspace: atom.workspace,
-      runTestsFn: testFn,
+      fileFilter: atom.config.get('trinity.fileFilters'),
       babelOptions: atom.config.get('trinity.babelOptions'),
       // we pass a function, because this may change as more panes (editors) open/close
       projPathsFn: function () { return atom.project.getPaths() }

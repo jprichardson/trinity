@@ -1,15 +1,16 @@
 'use babel'
 
 import { CompositeDisposable } from 'atom'
+import runTests from './run-tests'
 import _debug from './bdebug'
 
 const debug = _debug('trinity:app')
 
 export default class App {
-  constructor ({ workspace, runTestsFn, babelOptions, projPathsFn }) {
+  constructor ({ workspace, fileFilter, babelOptions, projPathsFn }) {
     this.disposables = new CompositeDisposable()
     this.workspace = workspace
-    this.runTestsFn = runTestsFn
+    this.fileFilter = fileFilter
     this.babelOptions = babelOptions
     this.projPathsFn = projPathsFn
   }
@@ -19,7 +20,7 @@ export default class App {
       debug(`editor opened with ${editor.getPath()}`)
       this.disposables.add(editor.onDidSave((event) => {
         debug(`editor saved ${event.path}`)
-        this.runTestsFn(event.path, editor.getBuffer(), this.babelOptions, this.projPathsFn())
+        runTests(this.fileFilter, event.path, editor.getBuffer(), this.babelOptions, this.projPathsFn())
       }))
     }))
   }

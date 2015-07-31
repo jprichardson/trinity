@@ -1,5 +1,6 @@
 'use babel'
 
+import minimatch from 'minimatch'
 import once from 'onetime'
 import React from 'react'
 import tapOut from 'tap-out'
@@ -16,7 +17,7 @@ const debug = _debug('trinity:run-tests')
 const mountReactApp = once(mountReact)
 
 export default function runTestsFn (fileFilter, file, textBuffer, babelOptions, projPaths) {
-  let match = file.match(fileFilter)
+  let match = matchesFilter(fileFilter, file)
   debug(`'${file}' ${match ? 'MATCHES' : 'DOES NOT MATCH'} '${fileFilter}'`)
   if (!match) return
   mountReactApp()
@@ -61,4 +62,10 @@ function mountReact () {
   var divWV = document.createElement('div')
   divWV.setAttribute('id', 'trinity-wv')
   div.appendChild(divWV)
+}
+
+function matchesFilter (fileFilter, file) {
+  let filters = fileFilter.split(';').map(s => s.trim())
+  debug('filters: ${filters}')
+  return !!filters.filter(filter => minimatch(file, filter, { matchBase: true })).length
 }

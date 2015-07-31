@@ -26,7 +26,7 @@
   "homepage": "https://github.com/jprichardson/trinity#readme",
   "dependencies": {
     "babel-core": "^5.8.5",
-    "lodash.partial": "^3.1.1",
+    "minimatch": "^2.0.10",
     "mocha": "^2.2.5",
     "ms": "^0.7.1",
     "onetime": "^1.0.0",

@@ -2,6 +2,7 @@
 ------------------
 - made `<pre>` text selectable / copyable
 - scrolling hack (view all content)
+- handle multiple file extensions to run (on editor save)
 
 0.3.0 / 2015-07-29
 ------------------
