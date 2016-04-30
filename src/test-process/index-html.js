@@ -1,4 +1,4 @@
-var ipc = require('ipc')
+var ipc = require('electron').ipcRenderer
 var Mocha = require('mocha')
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ipc.on('run-test', runTest)
 
-function runTest (testFile, text, babelOptions, projPaths) {
+function runTest (ipcEvent, testFile, text, babelOptions, projPaths) {
   require('./babel-hook')(projPaths, babelOptions)
 
   // super hacky, should probably use recast
