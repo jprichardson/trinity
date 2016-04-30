@@ -1,0 +1,12 @@
+{
+  "presets": [
+    "es2015-node5",
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    ["typecheck", { "disable": { "production": true } }]
+  ]
+}

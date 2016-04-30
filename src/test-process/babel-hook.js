@@ -1,5 +1,6 @@
 var path = require('path')
-var register = require('babel-core/register')
+var register = require('babel-register')
+require('babel-polyfill')
 
 function hook (projPaths, babelOptions) {
   var localModPath = path.resolve(projPaths[0], babelOptions.resolvePath)
@@ -12,13 +13,7 @@ function hook (projPaths, babelOptions) {
       var localModule = path.join(localModPath, localModuleName)
       return localModule
     },
-    extensions: ['.js'],
-    optional: [
-      'es7.decorators',
-      'es7.asyncFunctions',
-      'es7.objectRestSpread'
-    ],
-    cache: false
+    extensions: ['.js']
   })
 }
 

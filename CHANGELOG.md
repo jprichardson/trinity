@@ -1,3 +1,7 @@
+0.5.0 / 2016-04-30
+------------------
+- upgraded to Babel 6
+
 0.4.0 / 2015-07-31
 ------------------
 - made `<pre>` text selectable / copyable
