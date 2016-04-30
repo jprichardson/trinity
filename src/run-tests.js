@@ -3,6 +3,7 @@
 import minimatch from 'minimatch'
 import once from 'onetime'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import tapOut from 'tap-out'
 import App from './ui/app.react'
 import { setRightPanel } from './atom'
@@ -56,7 +57,7 @@ function mountReact () {
   var div = document.createElement('div')
   div.setAttribute('class', 'tree-view-resizer')
   setRightPanel(atom.workspace, div)
-  React.render(<App />, div)
+  ReactDOM.render(<App />, div)
   debug('react mounted.')
 
   var divWV = document.createElement('div')
