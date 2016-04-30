@@ -132,7 +132,7 @@ const App = React.createClass({
       : null
 
     return (
-      <div className='inset-panel native-key-bindings tree-view-resizer' style={{ width: '100%' }} tabIndex={ -1 }>
+      <div className='inset-panel native-key-bindings tree-view-resizer' style={{ width: '100%', height: '100%' }} tabIndex={ -1 }>
         <div className='panel-heading'>
           Trinity
           <div className='inline-block' style={{ float: 'right' }}>
