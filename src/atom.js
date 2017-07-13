@@ -11,7 +11,6 @@ export function setRightPanel (workspace, domEl) {
 function add (workspace, el) {
   return new Promise((resolve, reject) => {
     const { dispose } = workspace.onDidOpen((index, item, pane, uri) => {
-      console.warn('OPEN FUCK HEAD')
       if (!item) return
       if (item.element !== el || item.getTitle !== ITEM_NAME) return
       dispose()
