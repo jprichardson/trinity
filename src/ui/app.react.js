@@ -18,31 +18,6 @@ const App = React.createClass({
     return { tests: [], results: [], dragData: {} }
   },
 
-  handleDragStart ({ pageX }) {
-    let rootEl = document.getElementById('trinity-root')
-    this.setState({ dragData: {
-      dragging: true,
-      pageX: pageX,
-      width: rootEl.offsetWidth
-    }})
-  },
-
-  handleDragMove ({ pageX }) {
-    let dragData = this.state.dragData
-    if (!dragData.dragging) return
-    let rootEl = document.getElementById('trinity-root')
-    let offset = pageX - dragData.pageX
-    let newWidth = dragData.width - offset
-    rootEl.style.width = newWidth + 'px'
-  },
-
-  handleDragEnd ({ pageX }) {
-    localStorage.setItem('trinity-width', getRootElement().offsetWidth)
-    this.setState({ dragData: {
-      dragging: false
-    }})
-  },
-
   handleTestEvents ({ eventName, data }) {
     debug(`${eventName}: ${JSON.stringify(data, null, 2)}`)
     let tests = this.state.tests
@@ -99,19 +74,15 @@ const App = React.createClass({
 
   componentDidMount () {
     events.subscribe(this.handleTestEvents)
-    document.addEventListener('mousemove', this.handleDragMove)
-    document.addEventListener('mouseup', this.handleDragEnd)
 
     // restore width
     let width = localStorage.getItem('trinity-width')
     if (!width) return
-    getRootElement().style.width = width + 'px'
+    // getRootElement().style.width = width + 'px'
   },
 
   componentDidUnmount () {
     events.unsubscribe(this.handleTestEvents)
-    document.removeEventListener('mousemove', this.handleDragMove)
-    document.removeEventListener('mouseup', this.handleDragEnd)
   },
 
   render () {
@@ -148,7 +119,7 @@ const App = React.createClass({
           <div className='block'>&nbsp;</div>
           <div className='block'>&nbsp;</div>
         </div>
-        <div className='tree-view-resize-handle' onMouseDown={ this.handleDragStart }/>
+        <div className='tree-view-resize-handle'/>
       </div>
     )
   }

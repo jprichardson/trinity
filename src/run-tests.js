@@ -1,7 +1,6 @@
 'use babel'
 
 import minimatch from 'minimatch'
-import once from 'onetime'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import tapOut from 'tap-out'
@@ -15,13 +14,13 @@ import * as webView from './test-process/webview'
 /* global atom */
 
 const debug = _debug('trinity:run-tests')
-const mountReactApp = once(mountReact)
 
-export default function runTestsFn (fileFilter, file, textBuffer, babelOptions, projPaths) {
+export default async function runTestsFn (fileFilter, file, textBuffer, babelOptions, projPaths) {
   let match = matchesFilter(fileFilter, file)
   debug(`'${file}' ${match ? 'MATCHES' : 'DOES NOT MATCH'} '${fileFilter}'`)
   if (!match) return
-  mountReactApp()
+  await mountReact()
+
   debug(`running ${file}`)
 
   var wvContainer = document.getElementById('trinity-wv')
@@ -52,11 +51,15 @@ export default function runTestsFn (fileFilter, file, textBuffer, babelOptions, 
   wvContainer.appendChild(wv)
 }
 
-function mountReact () {
+async function mountReact () {
+  // already exists, so exit
+  if (document.getElementById('trinity-root')) return
+
   debug('mounting react...')
   var div = document.createElement('div')
   div.setAttribute('class', 'tree-view-resizer')
-  setRightPanel(atom.workspace, div)
+  await setRightPanel(atom.workspace, div)
+
   ReactDOM.render(<App />, div)
   debug('react mounted.')
 

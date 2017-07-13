@@ -1,3 +1,7 @@
+0.6.0 / 2017-07-12
+------------------
+- uses Atom Dock components instead of custom panel (requires Atom 1.17.0)
+
 0.5.0 / 2016-04-30
 ------------------
 - upgraded to Babel 6

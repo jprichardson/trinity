@@ -1,22 +1,27 @@
 'use babel'
 
+const ITEM_NAME = 'Trinity'
+
 // either finds existing, or adds new
 export function setRightPanel (workspace, domEl) {
-  domEl.setAttribute('id', 'trinity-root')
-  let panels = workspace.getRightPanels()
-  if (panels.length === 0) return workspace.addRightPanel({ item: domEl })
+  domEl.setAttribute('id', 'trinity-root') // <-- should be be moved one level up
+  add(workspace, domEl)
+}
 
-  let panel
-  for (panel of panels) {
-    if (panel.item.id === 'trinity-root') break
-  }
+function add (workspace, el) {
+  return new Promise((resolve, reject) => {
+    const { dispose } = workspace.onDidOpen((index, item, pane, uri) => {
+      console.warn('OPEN FUCK HEAD')
+      if (!item) return
+      if (item.element !== el || item.getTitle !== ITEM_NAME) return
+      dispose()
+      resolve()
+    })
 
-  if (panel) {
-    let parent = panel.item.parentNode
-    parent.removeChild(panel.item)
-    parent.appendChild(domEl)
-    panel.item = domEl
-  } else {
-    workspace.addRightPanel({ item: domEl })
-  }
+    workspace.open({
+      element: el,
+      getTitle () { return ITEM_NAME },
+      getDefaultLocation () { return 'right' }
+    })
+  })
 }
